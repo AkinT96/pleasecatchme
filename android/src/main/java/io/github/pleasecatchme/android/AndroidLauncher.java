@@ -24,6 +24,7 @@ public class AndroidLauncher extends AndroidApplication {
 
         // Beispiel: Daten in die Datenbank schreiben
         writeTestData();
+        //hi
     }
 
 
