@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1000851228879",
+    "firebase_url": "https://pleasecatchme-47488-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "pleasecatchme-47488",
+    "storage_bucket": "pleasecatchme-47488.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1000851228879:android:79ac457641c5af96568fba",
+        "android_client_info": {
+          "package_name": "io.github.pleasecatchme"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJKL37GInnlISaAR2hqtGkcZ6WuUQHEGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

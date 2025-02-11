@@ -57,6 +57,9 @@ www-test/
 ## TeaVM:
 # Not sure yet...
 
+##google
+android/google-services.json
+
 ## IntelliJ, Android Studio:
 .idea/
 *.ipr
