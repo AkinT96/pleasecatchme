@@ -45,6 +45,7 @@ public class Main extends ApplicationAdapter {
             1, 1, // Keine Skalierung
             rotation // Rotationswinkel
         );
+        //test
 
         batch.end();
     }
