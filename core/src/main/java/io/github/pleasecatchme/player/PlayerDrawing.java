@@ -69,11 +69,8 @@ public class PlayerDrawing {
     }
 
     public void dispose() {
-        // Alle geladenen Ressourcen freigeben
         floorTexture.dispose();
         playerTexture.dispose();
-        // (SpriteBatch wird im Main.dispose freigegeben)
     }
 
-    // Möglichkeit: Weitere Methoden, z.B. um neue Spieler hinzuzufügen oder Positionen von extern zu aktualisieren.
 }

@@ -1,31 +1,24 @@
-// Main.java – Hauptklasse des Spiels
 package io.github.pleasecatchme;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import io.github.pleasecatchme.player.PlayerDrawing;
+import io.github.pleasecatchme.Rendering.GameRenderer;
+
 
 public class Main extends ApplicationAdapter {
-    private SpriteBatch batch;
-    private PlayerDrawing playerDrawingUnit;
+    private GameRenderer renderer;
 
     @Override
     public void create() {
-        batch = new SpriteBatch();
-        playerDrawingUnit = new PlayerDrawing(batch);
+        renderer = new GameRenderer();
     }
 
     @Override
     public void render() {
-        // Delegiere an PlayerDrawing zum Aktualisieren und Zeichnen
-        playerDrawingUnit.draw();
+        renderer.render();
     }
 
     @Override
     public void dispose() {
-        // Ressourcen freigeben
-        playerDrawingUnit.dispose();
-        batch.dispose();
+        renderer.dispose();
     }
 }
