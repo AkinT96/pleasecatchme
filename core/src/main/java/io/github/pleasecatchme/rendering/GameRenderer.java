@@ -1,11 +1,14 @@
-package io.github.pleasecatchme.Rendering;
+package io.github.pleasecatchme.rendering;
 // GameRenderer.java – Eine separate Klasse für das Rendering
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import io.github.pleasecatchme.player.PlayerDrawing;
 
+
 public class GameRenderer {
     private SpriteBatch batch;
     private PlayerDrawing playerDrawingUnit;
+
+
 
     public GameRenderer() {
         batch = new SpriteBatch();
