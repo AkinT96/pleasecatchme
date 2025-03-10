@@ -1,38 +1,42 @@
 package io.github.pleasecatchme.android;
 
 import android.os.Bundle;
+import android.util.Log;
+import androidx.annotation.NonNull;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import io.github.pleasecatchme.Main;
-import android.util.Log;
+import io.github.pleasecatchme.android.firebaseAuth.Auth;
 
 public class AndroidLauncher extends AndroidApplication {
     private DatabaseReference database;
-
+    private Auth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AndroidApplicationConfiguration configuration = new AndroidApplicationConfiguration();
-        configuration.useImmersiveMode = true; // Recommended, but not required.
-        initialize(new Main(), configuration);
 
-        // Firebase initialisieren
-        database = FirebaseDatabase.getInstance("https://pleasecatchme-47488-default-rtdb.europe-west1.firebasedatabase.app")
-            .getReference();
+        auth.authenticateUser();
+        startGame();
 
-        // Beispiel: Daten in die Datenbank schreiben
-        writeTestData();
-        //hi
+
+
+        // Nutzer authentifizieren, bevor das Spiel gestartet wird
     }
 
 
-    private void writeTestData() {
-        database.child("test").setValue("Hello Firebase")
-            .addOnSuccessListener(aVoid -> Log.d("FirebaseTest", "✅ Daten erfolgreich geschrieben!"))
-            .addOnFailureListener(e -> Log.e("FirebaseTest", "❌ Fehler beim Schreiben: " + e.getMessage()));
-    }
 
+    private void startGame() {
+        runOnUiThread(() -> {
+            AndroidApplicationConfiguration configuration = new AndroidApplicationConfiguration();
+            configuration.useImmersiveMode = true;
+            initialize(new Main(), configuration);
+        });
+    }
 }
