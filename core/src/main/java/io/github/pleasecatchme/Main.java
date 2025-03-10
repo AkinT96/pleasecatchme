@@ -1,11 +1,14 @@
 package io.github.pleasecatchme;
 
 import com.badlogic.gdx.ApplicationAdapter;
-import io.github.pleasecatchme.Rendering.GameRenderer;
+
+import io.github.pleasecatchme.rendering.GameRenderer;
 
 
 public class Main extends ApplicationAdapter {
     private GameRenderer renderer;
+
+
 
     @Override
     public void create() {

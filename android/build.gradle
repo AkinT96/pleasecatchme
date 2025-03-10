@@ -1,4 +1,3 @@
-
 buildscript {
   repositories {
     mavenCentral()
@@ -24,12 +23,12 @@ android {
     }
   }
   packagingOptions {
-		resources {
-			excludes += ['META-INF/robovm/ios/robovm.xml', 'META-INF/DEPENDENCIES.txt', 'META-INF/DEPENDENCIES',
+    resources {
+      excludes += ['META-INF/robovm/ios/robovm.xml', 'META-INF/DEPENDENCIES.txt', 'META-INF/DEPENDENCIES',
                    'META-INF/dependencies.txt', '**/*.gwt.xml']
-			pickFirsts += ['META-INF/LICENSE.txt', 'META-INF/LICENSE', 'META-INF/license.txt', 'META-INF/LGPL2.1',
+      pickFirsts += ['META-INF/LICENSE.txt', 'META-INF/LICENSE', 'META-INF/license.txt', 'META-INF/LGPL2.1',
                      'META-INF/NOTICE.txt', 'META-INF/NOTICE', 'META-INF/notice.txt']
-		}
+    }
   }
   defaultConfig {
     applicationId 'io.github.pleasecatchme'
@@ -60,13 +59,14 @@ repositories {
 configurations { natives }
 
 dependencies {
-  implementation 'com.google.firebase:firebase-database:21.0.0'
-  implementation 'com.google.firebase:firebase-auth:23.2.0'
-    implementation 'androidx.appcompat:appcompat:1.7.0'
-    implementation 'androidx.credentials:credentials:1.5.0-rc01'
-    implementation 'androidx.credentials:credentials-play-services-auth:1.3.0'
-    implementation 'com.google.android.libraries.identity.googleid:googleid:1.1.1'
-    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.4'
+  implementation platform('com.google.firebase:firebase-bom:33.10.0') // Automatische Versionierung
+  implementation 'com.google.firebase:firebase-auth'
+  implementation 'com.google.firebase:firebase-database'
+  implementation 'androidx.appcompat:appcompat:1.7.0'
+  implementation 'androidx.credentials:credentials:1.5.0-rc01'
+  implementation 'androidx.credentials:credentials-play-services-auth:1.3.0'
+  implementation 'com.google.android.libraries.identity.googleid:googleid:1.1.1'
+  coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
   implementation "com.badlogicgames.gdx:gdx-backend-android:$gdxVersion"
   implementation project(':core')
 
@@ -97,11 +97,11 @@ tasks.register('copyAndroidNatives') {
 
     configurations.natives.copy().files.each { jar ->
       def outputDir = null
-      if(jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("libs/armeabi-v7a")
-      if(jar.name.endsWith("natives-arm64-v8a.jar")) outputDir = file("libs/arm64-v8a")
-      if(jar.name.endsWith("natives-x86_64.jar")) outputDir = file("libs/x86_64")
-      if(jar.name.endsWith("natives-x86.jar")) outputDir = file("libs/x86")
-      if(outputDir != null) {
+      if (jar.name.endsWith("natives-armeabi-v7a.jar")) outputDir = file("libs/armeabi-v7a")
+      if (jar.name.endsWith("natives-arm64-v8a.jar")) outputDir = file("libs/arm64-v8a")
+      if (jar.name.endsWith("natives-x86_64.jar")) outputDir = file("libs/x86_64")
+      if (jar.name.endsWith("natives-x86.jar")) outputDir = file("libs/x86")
+      if (outputDir != null) {
         copy {
           from zipTree(jar)
           into outputDir

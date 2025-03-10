@@ -11,6 +11,7 @@ import android.util.Log;
 public class AndroidLauncher extends AndroidApplication {
     private DatabaseReference database;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
