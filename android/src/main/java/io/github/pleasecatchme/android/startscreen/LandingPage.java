@@ -30,7 +30,7 @@ public class LandingPage extends AppCompatActivity {
     private FirebaseAuth auth;
     private CredentialManager credentialManager;
     private ExecutorService executorService;
-    private static final String WEB_CLIENT_ID = "DEIN_WEB_CLIENT_ID";
+    private static final String WEB_CLIENT_ID = "1000851228879-l93qqp8o3a4diu4t5qljke3pa7jusjms.apps.googleusercontent.com";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,10 +76,12 @@ public class LandingPage extends AppCompatActivity {
                 @Override
                 public void onResult(GetCredentialResponse getCredentialResponse) {
 
+                    Log.d("GoogleSignIn", "✅ Google Sign-In erfolgreich");
                 }
 
                 @Override
                 public void onError(@NonNull GetCredentialException e) {
+                    Log.e("GoogleSignIn", "❌ Fehler beim Abrufen des Google ID-Tokens");
 
                 }
 
@@ -106,11 +108,18 @@ public class LandingPage extends AppCompatActivity {
                 @Override
                 public void onResult(GetCredentialResponse getCredentialResponse) {
 
+                    Log.d("GoogleSignIn", "✅ Google Sign-In erfolgreich");
+
+                    handleSignIn(getCredentialResponse);
+
                 }
 
                 @Override
                 public void onError(@NonNull GetCredentialException e) {
 
+                    Log.e("GoogleSignIn", "❌ Fehler beim Abrufen des Google ID-Tokens");
+
+                    handleFailure(e);
                 }
             }
         );
@@ -141,6 +150,11 @@ public class LandingPage extends AppCompatActivity {
                     FirebaseUser user = auth.getCurrentUser();
                     Log.d("GoogleSignIn", "✅ Erfolgreich angemeldet als: " + user.getDisplayName());
                     Toast.makeText(LandingPage.this, "Angemeldet als " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+
+                    // 🎮 Starte direkt das Spiel nach erfolgreichem Login
+                    Intent intent = new Intent(LandingPage.this, AndroidLauncher.class);
+                    startActivity(intent);
+                    finish(); // Beende LandingPage, damit sie nicht zurückkommt
                 } else {
                     Log.e("GoogleSignIn", "❌ Anmeldung fehlgeschlagen", task.getException());
                     Toast.makeText(LandingPage.this, "Fehler bei der Anmeldung", Toast.LENGTH_SHORT).show();
